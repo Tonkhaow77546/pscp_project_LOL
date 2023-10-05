@@ -15,7 +15,7 @@ pygame.init()
 screen = pygame.display.set_mode((wide, height))
 pygame.display.set_caption("Test")
 
-table = [[0 for _ in range(numtable)] for _ in range(numtable)]
+table = [["" for _ in range(numtable)] for _ in range(numtable)]
 newtable = copy.deepcopy(table)
 
 
@@ -88,6 +88,19 @@ while running:
                     for i in word_clicked:
                         word_table[i] = random_letter()
                     summit_stage = True
+                #print word in row and column for check meaning
+                    #column
+                    for x in range(numtable):
+                        word = ""
+                        for y in range(numtable):
+                            word += table[x][y]
+                        print("word column", word)
+                    #row
+                    for x in range(numtable):
+                        word = ""
+                        for y in range(numtable):
+                            word += table[y][x]
+                        print("word row", word)
                     word_applied = dict()
                     word_clicked = []
                     pass
@@ -106,7 +119,6 @@ while running:
                                 word_clicked.append(wordclick)
                                 word_applied.update(
                                     {str(where_main)+',' + str(where_click): mainclick})
-
                         wordclick, mainclick = False, False
 
     summit_stage = False
@@ -139,7 +151,6 @@ while running:
         print('---------------------------------')
         new_word = list(word_table)
     pygame.display.flip()
-
 
 pygame.quit()
 sys.exit()
