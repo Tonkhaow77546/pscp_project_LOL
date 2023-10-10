@@ -2,7 +2,6 @@ import pygame
 import sys
 import random
 import string
-import copy
 
 numtable = 8
 area = 80
@@ -117,8 +116,7 @@ while running:
                             else:
                                 word_table[wordclick] = ''
                                 word_clicked.append(wordclick)
-                                word_applied.update(
-                                    {str(where_main)+',' + str(where_click): mainclick})
+                                word_applied.update({str(where_main)+',' + str(where_click): mainclick})
                         wordclick, mainclick = False, False
 
     summit_stage = False
@@ -127,8 +125,7 @@ while running:
     # table
     for x in range(numtable):
         for y in range(numtable):
-            pygame.draw.rect(screen, linecolor,
-                             (x * area, y * area, area, area), 1)
+            pygame.draw.rect(screen, linecolor,(x * area, y * area, area, area), 1)
             if table[x][y] != 0:
                 text = pygame.font.Font(None, 50).render(
                     table[x][y], True, (255, 0, 0))
@@ -140,8 +137,7 @@ while running:
         newtable = table.copy()
     # word table
     for y in range(numtable):
-        pygame.draw.rect(screen, linecolor, (numtable *
-                         area + 100, y * area, area, area), 1)
+        pygame.draw.rect(screen, linecolor, (numtable * area + 100, y * area, area, area), 1)
         text = pygame.font.Font(None, 50).render(
             word_table[y], True, (255, 0, 0))
         screen.blit(text, (numtable * area + 150, (y * area) + 30))
