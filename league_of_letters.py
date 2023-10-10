@@ -66,7 +66,7 @@ while running:
                     for i in clicked_pos_table:
                         temp_pos = (i).split(',')
                         print('temp_pos ==', temp_pos)
-                        table[int(temp_pos[0])][int(temp_pos[1])] = 0
+                        table[int(temp_pos[0])][int(temp_pos[1])] = ""
 
                         for i in range(len(word_table)):
                             if word_table[i] == '':
@@ -126,10 +126,8 @@ while running:
     for x in range(numtable):
         for y in range(numtable):
             pygame.draw.rect(screen, linecolor,(x * area, y * area, area, area), 1)
-            if table[x][y] != 0:
-                text = pygame.font.Font(None, 50).render(
-                    table[x][y], True, (255, 0, 0))
-                screen.blit(text, (x * area + area // 3, y * area + area // 3))
+            text = pygame.font.Font(None, 50).render(table[x][y], True, (255, 0, 0))
+            screen.blit(text, (x * area + area // 3, y * area + area // 3))
     if newtable != table:
         '''for i in table:
             print(i)
