@@ -13,10 +13,10 @@ boxcolor = (255, 0, 0)
 
 pygame.init()
 screen = pygame.display.set_mode((wide, height))
-pygame.display.set_caption("Test")
+pygame.display.set_caption("league_of_letters")
 
 table = [["" for _ in range(numtable)] for _ in range(numtable)]
-newtable = copy.deepcopy(table)
+newtable = table.copy()
 
 
 print('-------------------------------------')
@@ -137,7 +137,7 @@ while running:
         '''for i in table:
             print(i)
         print('---------------------------------')'''
-        newtable = copy.deepcopy(table)
+        newtable = table.copy()
     # word table
     for y in range(numtable):
         pygame.draw.rect(screen, linecolor, (numtable *
