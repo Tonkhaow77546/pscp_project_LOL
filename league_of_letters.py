@@ -1,7 +1,6 @@
 import pygame
 import sys
 import random
-import string
 
 numtable = 8
 area = 80
@@ -25,7 +24,17 @@ print('-------------------------------------')
 
 
 def random_letter():
-    return random.choice(string.ascii_lowercase)
+    letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
+                    "J": 5, "K": 5, "L": 5, "M": 5, "N": 5, "O": 5, "P": 5, "Q": 5, "R": 5, \
+                    "S": 5, "T": 5, "U": 5, "V": 5, "W": 5, "X": 5, "Y": 5, "Z": 5}
+    key, value = random.choice(list(letter_count.items()))
+    if value == 1:
+        letter_count.pop(key)
+        print(letter_count)
+        return key
+    letter_count[key] -= 1
+    print(letter_count)
+    return key
 
 
 word_table = [random_letter() for _ in range(numtable-2)]
@@ -67,7 +76,6 @@ while running:
                         temp_pos = (i).split(',')
                         print('temp_pos ==', temp_pos)
                         table[int(temp_pos[0])][int(temp_pos[1])] = ""
-
                         for i in range(len(word_table)):
                             if word_table[i] == '':
                                 filling.append(i)
