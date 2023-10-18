@@ -20,7 +20,7 @@ def wtf():
     pygame.display.set_caption("Test")
 
     table = [["" for _ in range(numtable)] for _ in range(numtable)]
-    newtable = copy.deepcopy(table)
+    newtable = table.copy()
 
     print('-------------------------------------')
     for i in newtable:
