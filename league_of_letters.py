@@ -10,7 +10,7 @@ def wtf():
 
     numtable = 12
     area = 80
-    wide = (numtable*area) + (area*4)
+    wide = (numtable*area) + (area*5)
     height = numtable*area
     linecolor = (255, 255, 255)
     boxcolor = (255, 0, 0)
@@ -79,9 +79,9 @@ def wtf():
 
     old_table = table
     summit_stage = False
-
+    total_score = 0
     while running:
-        total_score = 0
+        
         
 
         for event in pygame.event.get():
@@ -130,6 +130,7 @@ def wtf():
                    
 
                     elif (where_click == numtable-1) and summit_stage == True:
+                        total_score = 0
                         summit_stage = False
                     # print word in row and column for check meaning
                         # column
@@ -234,6 +235,14 @@ def wtf():
                 '''print(i)
             print('---------------------------------')'''
             new_word = list(word_table)
+        
+
+        # show score
+        pygame.draw.circle(screen, (255,0,0), (area * numtable +  ((area* 4)*0.925),(3*area )), (75))
+        text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
+        screen.blit(text, (area * numtable +  ((area* 3)*1.1),(3*area)*0.9))
+
+
         pygame.display.flip()
 
     pygame.quit()
