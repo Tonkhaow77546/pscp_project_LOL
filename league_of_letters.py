@@ -10,13 +10,10 @@ def wtf():
 
     numtable = 12
     area = 80
-    wide = (numtable*area) + (area*4)
-    height = numtable*area
     linecolor = (255, 255, 255)
-    boxcolor = (255, 0, 0)
 
     pygame.init()
-    screen = pygame.display.set_mode((wide, height))
+    screen = pygame.display.set_mode((1920, 1080))
     pygame.display.set_caption("Test")
 
     table = [["" for _ in range(numtable)] for _ in range(numtable)]
@@ -26,6 +23,8 @@ def wtf():
     for i in newtable:
         print(i)
     print('-------------------------------------')
+    for y in range(numtable):
+            pygame.draw.rect(screen, linecolor, (numtable *area + 100, y * area, area, area), 1)
 
     def random_letter():
         letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
@@ -34,10 +33,10 @@ def wtf():
         key, value = random.choice(list(letter_count.items()))
         if value == 1:
             letter_count.pop(key)
-            print(letter_count)
+            #print(letter_count)
             return key
         letter_count[key] -= 1
-        print(letter_count)
+        #print(letter_count)
         return key
 
     word_table = [random_letter() for _ in range(numtable-2)]
@@ -79,22 +78,20 @@ def wtf():
 
     old_table = table
     summit_stage = False
-
+    total_score = 0
     while running:
-        total_score = 0
-        
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = pygame.mouse.get_pos()
+                print(mouse_x,mouse_y)
 
                 reset = False
                 old_table = table
                 # click word table
-                if numtable * area + 100 <= mouse_x < numtable * area + 100 + area:
-                    where_click = (mouse_y // area)
+                if 1180 <= mouse_x < 1270:
+                    where_click = ((mouse_y-50) // area)
                     print(where_click)
                     if 0 <= where_click < numtable-2:
                         wordclick = where_click
@@ -130,6 +127,7 @@ def wtf():
                    
 
                     elif (where_click == numtable-1) and summit_stage == True:
+                        total_score = 0
                         summit_stage = False
                     # print word in row and column for check meaning
                         # column
@@ -195,9 +193,9 @@ def wtf():
                             pass
 
             # click main table
-                elif 0 <= mouse_x < numtable * area and 0 <= mouse_y < numtable * area:
+                elif 50 <= mouse_x < 1010 and 50 <= mouse_y < 1010:
                     if wordclick is not False:
-                        where_main, where_click = mouse_x // area, mouse_y // area
+                        where_main, where_click = (mouse_x-50) // area, (mouse_y-50) // area
                         if 0 <= where_main < numtable and 0 <= where_click < numtable:
                             if table[where_main][where_click] in [0, '']:   
                                 table[where_main][where_click] = mainclick
@@ -214,26 +212,35 @@ def wtf():
         # table
         for x in range(numtable):
             for y in range(numtable):
-                pygame.draw.rect(screen, linecolor,(x * area, y * area, area, area), 1)
+                pygame.draw.rect(screen, linecolor,((x * area) + 50, (y * area) + 50, area, area), 3)
                 text = pygame.font.Font(None, 50).render(table[x][y], True, (255, 0, 0))
-                screen.blit(text, (x * area + area // 3, y * area + area // 3))
+                screen.blit(text, ((x * area + area // 3) + 45,( y * area + area // 3) + 45))
         if newtable != table:
             '''for i in table:
                 print(i)
             print('---------------------------------')'''
 
-            newtable = copy.deepcopy(table)
+            newtable = table.copy()
         # word table
         for y in range(numtable):
-            pygame.draw.rect(screen, linecolor, (numtable *
-                                                 area + 100, y * area, area, area), 1)
+            pygame.draw.rect(screen, linecolor, (numtable *area + 225, y * area+50, area, area), 1)
             text = pygame.font.Font(None, 50).render(word_table[y], True, (255, 0, 0))
-            screen.blit(text, (numtable * area + 150, (y * area) + 30))
+            screen.blit(text, (numtable * area + 250, (y * area) + 80))
         if list(word_table) != new_word:
             for i in table:
                 '''print(i)
             print('---------------------------------')'''
             new_word = list(word_table)
+        
+
+        # show score
+        pygame.draw.circle(screen, (255,0,0), (1600,225), (75))
+        text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
+        screen.blit(text, (1600,225))
+        #show total word value
+        #text = pygame.font.Font(None, 100).render(str( ), True, (0, 255, 0))
+        #screen.blit(text, (1600,250))
+
         pygame.display.flip()
 
     pygame.quit()
