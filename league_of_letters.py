@@ -13,7 +13,7 @@ def wtf():
     linecolor = (255, 255, 255)
 
     pygame.init()
-    screen = pygame.display.set_mode((1920, 1080))
+    screen = pygame.display.set_mode((1920, 1060))
     pygame.display.set_caption("Test")
 
     table = [["" for _ in range(numtable)] for _ in range(numtable)]
