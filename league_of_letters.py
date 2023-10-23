@@ -23,8 +23,6 @@ def wtf():
     for i in newtable:
         print(i)
     print('-------------------------------------')
-    for y in range(numtable):
-            pygame.draw.rect(screen, linecolor, (numtable *area + 100, y * area, area, area), 1)
 
     def random_letter():
         letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
@@ -232,7 +230,6 @@ def wtf():
             print('---------------------------------')'''
             new_word = list(word_table)
         
-
         # show score
         pygame.draw.circle(screen, (255,0,0), (1600,225), (75))
         text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
