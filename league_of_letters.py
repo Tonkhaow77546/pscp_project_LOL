@@ -2,8 +2,6 @@ def wtf():
     import pygame
     import sys
     import random
-    import string
-    import copy
     import nltk
     from nltk.corpus import wordnet as wn
     from nltk.wsd import lesk
@@ -11,6 +9,7 @@ def wtf():
     numtable = 12
     area = 80
     linecolor = (255, 255, 255)
+    summit_time = 10
 
     pygame.init()
     screen = pygame.display.set_mode((1920, 1060))
@@ -74,7 +73,6 @@ def wtf():
         word_applied = dict() #local
         return(word_table, table , word_applied ,word_clicked)
 
-    old_table = table
     summit_stage = False
     total_score = 0
     while running:
@@ -178,6 +176,10 @@ def wtf():
                                 if pass_check == True:
                                     total_score+= len(str(i))
                                     pass_check = False
+                            summit_time -= 1
+                            #ถ้าsummitครบแล้วไปไหนต่อดี
+                            if summit_time == 0:
+                                pass
 
                         if reset == False:
                             print(word_table)
@@ -234,10 +236,9 @@ def wtf():
         pygame.draw.circle(screen, (255,0,0), (1600,225), (75))
         text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
         screen.blit(text, (1600,225))
-        #show total word value
-        #text = pygame.font.Font(None, 100).render(str( ), True, (0, 255, 0))
-        #screen.blit(text, (1600,250))
-
+        # summit time
+        text = pygame.font.Font(None, 100).render(str(summit_time), True, (0, 255, 0))
+        screen.blit(text, (1700,225))
         pygame.display.flip()
 
     pygame.quit()
