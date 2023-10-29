@@ -1,11 +1,87 @@
-def wtf():
-    import pygame
-    import sys
-    import random
-    import nltk
-    from nltk.corpus import wordnet as wn
-    from nltk.wsd import lesk
 
+
+
+import pygame
+import sys
+import random
+import nltk
+import math
+from nltk.corpus import wordnet as wn
+from nltk.wsd import lesk
+used_word = []
+total_score = 0
+
+
+
+
+def endgame():
+    pygame.init()
+    SCREEN = pygame.display.set_mode((1920, 1060))
+    pygame.display.set_caption("League of Letter")
+    
+    while True:
+        SCREEN.fill("#3c8dbc")#สีเมนู problem ใน ejudge
+        MENU_MOUSE_POS = pygame.mouse.get_pos()
+        
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                print('111')
+                pygame.quit()
+                sys.exit()
+
+        #pygame.display.flip()
+        
+        #screen for meaing
+        pygame.draw.rect(SCREEN,(239,204,162),(100 , 150 , 1200 , 800))
+        counter = 0
+        if len(used_word) > 0:
+            for i in used_word:
+                for ss in wn.synsets(str(i)):
+                    meaning = (ss, ss.definition())
+                    lenth = len(meaning[1])
+                    space = 0
+                    if lenth >= 50:
+                        while space <= lenth:
+                            text = pygame.font.Font(None, 30).render(str(meaning[0])+str(meaning[1][space:space + 50]), True, (255, 0, 0))
+                            SCREEN.blit(text,(110,165+(counter*25)))
+                            counter += 1
+                            space += 50
+                        pass
+                    else:
+                        text = pygame.font.Font(None, 30).render(str(meaning), True, (255, 0, 0))
+                        SCREEN.blit(text,(110,165+(counter*25)))
+                    counter +=1
+                    break
+
+        #showing score
+        pygame.draw.circle(SCREEN, (255,0,0), (1500,225), (100))
+        text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
+        SCREEN.blit(text,(1460,200))
+        
+        #try again button
+        pygame.draw.circle(SCREEN, (255,0,0), (1750,225), (100))
+        text = pygame.font.Font(None, 50).render(str('Try Again'), True, (0, 255, 0))
+        SCREEN.blit(text,(1680,215))
+
+        #screen for word
+        for i in range(len(used_word)):
+            if i >= len(used_word)/2:
+                pygame.draw.rect(SCREEN,(239,204,162),(1675 , 350+((i-math.ceil(len(used_word)/2))*35) , 200 , 30))
+                text = pygame.font.Font(None, 30).render(str(used_word[i]), True, (255, 0, 0))
+                SCREEN.blit(text,(1675 , 360+((i-math.ceil(len(used_word)/2))*35)))
+            else:
+                pygame.draw.rect(SCREEN,(239,204,162),(1400 , 350+(i*35) , 200 , 30))
+                text = pygame.font.Font(None, 30).render(str(used_word[i]), True, (255, 0, 0))
+                SCREEN.blit(text,(1400 , 360+(i*35)))
+
+        pygame.display.update()
+
+
+
+
+
+def main_gaame():
+    
     numtable = 12
     area = 80
     linecolor = (255, 255, 255)
@@ -46,35 +122,10 @@ def wtf():
     running = True
     word_clicked = []
     word_applied = dict()
-    used_word = []
     reset = False
+    global used_word1
+    global total_score
 
-
-    def func_reset(word_applied, word_clicked, table, word_table):
-        print('reset')
-        print(word_applied)
-        clicked_pos_table = list(word_applied.keys())
-        clicked_pos_word = list(word_applied.values())
-        print('table =', clicked_pos_table)
-        print('word =', clicked_pos_word)
-        filling = [] # local
-        for i in clicked_pos_table:
-            temp_pos = (i).split(',')
-            print('temp_pos ==', temp_pos)
-            table[int(temp_pos[0])][int(temp_pos[1])] = ""
-            for i in range(len(word_table)):
-                if word_table[i] == '':
-                    filling.append(i)
-            print('filling =', filling)
-            for i in range(len(clicked_pos_word)):
-                word_table[filling[i]] = clicked_pos_word[i]
-                print(word_table)
-        word_clicked = [] #local
-        word_applied = dict() #local
-        return(word_table, table , word_applied ,word_clicked)
-
-    summit_stage = False
-    total_score = 0
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -179,6 +230,7 @@ def wtf():
                             summit_time -= 1
                             #ถ้าsummitครบแล้วไปไหนต่อดี
                             if summit_time == 0:
+                                endgame()
                                 pass
 
                         if reset == False:
@@ -244,4 +296,4 @@ def wtf():
     pygame.quit()
     sys.exit()
 
-wtf()
+main_gaame()
