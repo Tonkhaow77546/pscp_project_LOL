@@ -10,7 +10,7 @@ from nltk.corpus import wordnet as wn
 from nltk.wsd import lesk
 used_word = []
 total_score = 0
-
+pass_word = []
 
 
 
@@ -34,18 +34,20 @@ def endgame():
         #screen for meaing
         pygame.draw.rect(SCREEN,(239,204,162),(100 , 150 , 1200 , 800))
         counter = 0
-        if len(used_word) > 0:
-            for i in used_word:
+        if len(set(pass_word)) > 0:
+            for i in set(pass_word):
                 for ss in wn.synsets(str(i)):
                     meaning = (ss, ss.definition())
                     lenth = len(meaning[1])
                     space = 0
                     if lenth >= 50:
+                        text = pygame.font.Font(None, 30).render(str(i)+'  '+str(meaning[0])+str(meaning[1][space:space + 50]), True, (255, 0, 0))
                         while space <= lenth:
-                            text = pygame.font.Font(None, 30).render(str(meaning[0])+str(meaning[1][space:space + 50]), True, (255, 0, 0))
-                            SCREEN.blit(text,(110,165+(counter*25)))
-                            counter += 1
                             space += 50
+                            counter += 1
+                            text = pygame.font.Font(None, 30).render(str(meaning[1][space:space + 50]), True, (255, 0, 0))
+                            SCREEN.blit(text,(110,165+(counter*25)))
+                            
                         pass
                     else:
                         text = pygame.font.Font(None, 30).render(str(meaning), True, (255, 0, 0))
@@ -85,7 +87,7 @@ def main_gaame():
     numtable = 12
     area = 80
     linecolor = (255, 255, 255)
-    summit_time = 10
+    summit_time = 3
 
     pygame.init()
     screen = pygame.display.set_mode((1920, 1060))
@@ -125,6 +127,7 @@ def main_gaame():
     reset = False
     global used_word1
     global total_score
+    global pass_word
 
     while running:
         for event in pygame.event.get():
@@ -226,9 +229,11 @@ def main_gaame():
                                         print('fail')
                                 if pass_check == True:
                                     total_score+= len(str(i))
+                                    pass_word.append(i)
                                     pass_check = False
+
+
                             summit_time -= 1
-                            #ถ้าsummitครบแล้วไปไหนต่อดี
                             if summit_time == 0:
                                 endgame()
                                 pass
