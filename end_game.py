@@ -11,7 +11,6 @@ import math
 ##from league_of_letters_1 import used_word as answer
 #from league_of_letters_1 import total_score as final_score
 
-
 pygame.init()
 SCREEN = pygame.display.set_mode((1920, 1060))
 pygame.display.set_caption("League of Letter")
@@ -20,6 +19,12 @@ pygame.display.set_caption("League of Letter")
 word_lenth = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
 #word_lenth = ['Hello','GYM','paint','pokemon']
 #word_lenth = ['Hello', 'gym']
+def inside(x, y):
+    check = (x - 1750)**2 + (y - 225)**2
+    if check <= 100**2:
+        print("อยู่ในวงกลมนะ")
+        return 1
+    return 0
 def endgame():
     while True:
         SCREEN.fill("#3c8dbc")#สีเมนู problem ใน ejudge
@@ -55,7 +60,14 @@ def endgame():
         pygame.draw.circle(SCREEN, (255,0,0), (1750,225), (100))
         text = pygame.font.Font(None, 50).render(str('Try Again'), True, (0, 255, 0))
         SCREEN.blit(text,(1680,215))
-
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            where = pygame.mouse.get_pos()
+            if 1650 <= where[0] <= 1850 and 125 <= where[1] <= 325:
+                if inside(where[0], where[1]) == 1:
+                    # ให้ไป maingame
+                    print("ไปเล่นใหม่นะ")
+                else:
+                    pass
         #screen for word
         for i in range(len(word_lenth)):
             if i >= len(word_lenth)/2:
