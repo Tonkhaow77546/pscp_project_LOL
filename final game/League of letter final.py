@@ -166,8 +166,6 @@ def main_game():
                     
                     # reset word position
                     elif where_click == numtable-2:
-                        #func_reset(word_applied, word_clicked, table, word_table)
-                        #reset = False
                         
                         print(word_applied)
                         clicked_pos_table = list(word_applied.keys())
@@ -316,7 +314,7 @@ def main_game():
         #pygame.draw.circle(screen, (255,0,0), (1700,950), (5))
         text = pygame.font.Font(None, 100).render(str(summit_time), True, (0, 255, 0))
         screen.blit(text, (1720,920))
-        pygame.display.flip()
+        pygame.display.update()
 
     pygame.quit()
     sys.exit()
