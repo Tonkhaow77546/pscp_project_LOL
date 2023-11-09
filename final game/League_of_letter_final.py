@@ -10,6 +10,9 @@ from nltk.wsd import lesk
 used_word = []
 total_score = 0
 pass_word = []
+letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
+                        "J": 5, "K": 5, "L": 5, "M": 5, "N": 5, "O": 5, "P": 5, "Q": 5, "R": 5, \
+                        "S": 5, "T": 5, "U": 5, "V": 5, "W": 5, "X": 5, "Y": 5, "Z": 5}
 
 
 def inside(x, y):
@@ -27,7 +30,7 @@ def endgame():
     background = pygame.transform.scale(background,(1920, 1060))
     SCREEN.blit(background,(0,0))
     pygame.init()
-    
+    global total_score, letter_count
     
     while True:
         MENU_MOUSE_POS = pygame.mouse.get_pos()
@@ -70,6 +73,10 @@ def endgame():
             pygame.draw.circle(SCREEN, (0,255,0), (1775,125), (100))#แก้ ตำแหน่ง*
             if 1675 <= where[0] <= 1875 and 25 <= where[1] <= 225:
                 if inside(where[0], where[1]) == 1:
+                    total_score = 0
+                    letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
+                        "J": 5, "K": 5, "L": 5, "M": 5, "N": 5, "O": 5, "P": 5, "Q": 5, "R": 5, \
+                        "S": 5, "T": 5, "U": 5, "V": 5, "W": 5, "X": 5, "Y": 5, "Z": 5}
                     main_game()# ให้ไป maingame*********
                     print("ไปเล่นใหม่นะ")
                     break
@@ -118,9 +125,6 @@ def main_game():
     print('-------------------------------------')
 
     def random_letter():
-        letter_count = {"A": 5, "B": 5, "C": 5, "D": 5, "E": 5, "F": 5, "G": 5, "H": 5, "I": 5, \
-                        "J": 5, "K": 5, "L": 5, "M": 5, "N": 5, "O": 5, "P": 5, "Q": 5, "R": 5, \
-                        "S": 5, "T": 5, "U": 5, "V": 5, "W": 5, "X": 5, "Y": 5, "Z": 5}
         key, value = random.choice(list(letter_count.items()))
         if value == 1:
             letter_count.pop(key)

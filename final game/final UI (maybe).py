@@ -1,17 +1,9 @@
 import pygame, sys
 from button import Button
-
+from League_of_letter_final import main_game
 pygame.init()
 
-grid_size = 6
-cell_size = 55
-gridwidth = 1280
-grid_height = 720
-grid_color = (255, 255, 255)
-box_color = (0, 255, 0)
-
-
-SCREEN = pygame.display.set_mode((1280, 720))
+SCREEN = pygame.display.set_mode((1920, 1060))
 pygame.display.set_caption("League of Letter")
 
 ## Sound
@@ -26,11 +18,11 @@ def click():
 
 ## Credit
 CDBG = pygame.image.load("UI/credit.png")
-CDBG = pygame.transform.scale(CDBG, (1280, 720))
+CDBG = pygame.transform.scale(CDBG, (1920, 1060))
 
 ## Background
 BG = pygame.image.load("UI/Background.png")
-BG = pygame.transform.scale(BG, (1280, 720))
+BG = pygame.transform.scale(BG, (1920, 1060))
 
 ## bottonplay
 botton_play = pygame.image.load("UI/Start_2.png")
@@ -116,7 +108,7 @@ def credit():
         OPTIONS_RECT = OPTIONS_TEXT.get_rect(center=(640, 90))
         SCREEN.blit(OPTIONS_TEXT, OPTIONS_RECT)
 
-        OPTIONS_BACK = Button(image=pygame.image.load("UI/Quit Rect.png"), pos=(640, 560), 
+        OPTIONS_BACK = Button(image=pygame.image.load("UI/Quit Rect.png"), pos=(640, 860), 
                             text_input="Back", font=get_font(75), base_color="Blue", hovering_color="Green")
 
         OPTIONS_BACK.changeColor(OPTIONS_MOUSE_POS)
@@ -142,9 +134,9 @@ def main_menu():
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
         MENU_TEXT = get_font(50).render("League of Letter", True, "White")
-        MENU_RECT = MENU_TEXT.get_rect(center=(640, 400))
+        MENU_RECT = MENU_TEXT.get_rect(center=(960, 500))
 
-        PLAY_BUTTON = Button(botton_play , pos=(640, 600),  ##ปุ่ม start size < 400 x 200 , > 250 x 70
+        PLAY_BUTTON = Button(botton_play , pos=(960, 600),  ##ปุ่ม start size < 400 x 200 , > 250 x 70
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
         MODE_BUTTON = Button(botton_mode, pos=(640, 620), #ปุ่ม option size < ที่ใส่ไปแล้วไม่น่าเกลียด
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
@@ -154,7 +146,7 @@ def main_menu():
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
         
         SCREEN.blit(MENU_TEXT, MENU_RECT)
-        SCREEN.blit(ejudge_avatar, (480, 50))
+        SCREEN.blit(ejudge_avatar, (810, 150))
 
         for button in [PLAY_BUTTON, CREDIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
@@ -168,7 +160,7 @@ def main_menu():
                 if event.button == 1:
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         click()
-                        playgame()
+                        main_game()
                     #if SETTING_BUTTON.checkForInput(MENU_MOUSE_POS):
                         #click()
                         #setting()
