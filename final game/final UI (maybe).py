@@ -161,9 +161,6 @@ def main_menu():
                     if PLAY_BUTTON.checkForInput(MENU_MOUSE_POS):
                         click()
                         main_game()
-                    #if SETTING_BUTTON.checkForInput(MENU_MOUSE_POS):
-                        #click()
-                        #setting()
                     if CREDIT_BUTTON.checkForInput(MENU_MOUSE_POS):
                         click()
                         credit()
