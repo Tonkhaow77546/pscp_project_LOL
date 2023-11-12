@@ -133,6 +133,9 @@ def main_menu():
 
         MENU_MOUSE_POS = pygame.mouse.get_pos()
 
+        MENU_TEXT = get_font(50).render("", True, "White")
+        MENU_RECT = MENU_TEXT.get_rect(center=(960, 500))
+        
         PLAY_BUTTON = Button(botton_play , pos=(960, 700),  ##ปุ่ม start size < 400 x 200 , > 250 x 70
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
         MODE_BUTTON = Button(botton_mode, pos=(640, 620), #ปุ่ม option size < ที่ใส่ไปแล้วไม่น่าเกลียด
