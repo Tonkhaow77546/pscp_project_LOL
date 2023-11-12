@@ -48,7 +48,7 @@ def endgame():
                     meaning = (ss, ss.definition())
                     lenth = len(meaning[1])
                     space = 0
-                    if lenth >= 50:
+                    if lenth >= 100:
                         text = pygame.font.Font(None, 30).render(str(i)+'  '+str(meaning[0])+str(meaning[1][space:space + 100]), True, (255, 0, 0))
                         while space <= lenth:
                             space += 100
