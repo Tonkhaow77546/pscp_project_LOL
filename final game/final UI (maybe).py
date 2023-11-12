@@ -41,8 +41,8 @@ botton_credit = pygame.image.load("UI/Credits_2.png")
 botton_credit = pygame.transform.scale(botton_credit, (180,60))
 
 ## EjudgeAvatar
-ejudge_avatar = pygame.image.load("UI/ejudgeavatar.png")
-ejudge_avatar = pygame.transform.scale(ejudge_avatar, (300,300))
+ejudge_avatar = pygame.image.load("UI/LOL Logo.png")
+ejudge_avatar = pygame.transform.scale(ejudge_avatar, (800,350))
 
 def playgame():
     """playgame"""
@@ -136,7 +136,7 @@ def main_menu():
         MENU_TEXT = get_font(50).render("League of Letter", True, "White")
         MENU_RECT = MENU_TEXT.get_rect(center=(960, 500))
 
-        PLAY_BUTTON = Button(botton_play , pos=(960, 600),  ##ปุ่ม start size < 400 x 200 , > 250 x 70
+        PLAY_BUTTON = Button(botton_play , pos=(960, 700),  ##ปุ่ม start size < 400 x 200 , > 250 x 70
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
         MODE_BUTTON = Button(botton_mode, pos=(640, 620), #ปุ่ม option size < ที่ใส่ไปแล้วไม่น่าเกลียด
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
@@ -146,7 +146,7 @@ def main_menu():
                             text_input="", font=get_font(75), base_color="#d7fcd4", hovering_color="Black")
         
         SCREEN.blit(MENU_TEXT, MENU_RECT)
-        SCREEN.blit(ejudge_avatar, (810, 150))
+        SCREEN.blit(ejudge_avatar, (580, 200))
 
         for button in [PLAY_BUTTON, CREDIT_BUTTON]:
             button.changeColor(MENU_MOUSE_POS)
