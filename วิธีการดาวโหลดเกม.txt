@@ -1,0 +1,24 @@
+วิธีการดาวโหลดเกม
+	ดาวโหลดเกมจาก Github
+	1.เข้าไปที่:https://github.com/Tonkhaow77546/pscp_project_LOL
+	2.ดาวโหลด folder “main” มา
+	3.เปิดเข้าไปใน “final game” และ รันไฟล์ “final UI” เพื่อเล่นเกม
+
+Window 
+ทำการโหลด pygame โดยการพิมพ์ในterminal “pip install pygame”
+ทำการติดตั้ง nltk โดยพิมพ์ “python -m nltk.downloader popular”
+เปิดหน้าใหม่ vs code แล้ว รัน “import nltk , nltk.download() ,nltk.downloader()”แล้วจะมีหน้าต่าง downloader ขึ้น มา ให้ทำการ ดาวโหลด verbnet และ wordnet หรือ จะทำการ download all ก็ได้(หากเกมรันไม่ได้เพราะ nltk แนะนำให้ download all และการdownload all ช่วย เพิ่ม word list ในเกมทำให้มีจำนวนคำศัพท์เยอะขึ้น)
+
+Mac OS
+ทำการโหลด pygame โดยการพิมพ์ในterminal “python3 -m pip install -U pygame --user”
+ทำการติดตั้ง nltk โดยพิมพ์ “pip install --user -U nltk”
+เปิดหน้าใหม่ vs code แล้ว รัน “import nltk , nltk.download() ,nltk.downloader()”แล้วจะมีหน้าต่าง downloader ขึ้น มา ให้ทำการ ดาวโหลด verbnet และ wordnet หรือ จะทำการ download all ก็ได้(หากเกมรันไม่ได้เพราะ nltk แนะนำให้ download all และการdownload all ช่วย เพิ่ม word list ในเกมทำให้มีจำนวนคำศัพเยอะขึ้น)
+
+Linux/Unix
+ทำการโหลด pygame โดยการพิมพ์ในterminal “python3 -m pip install -U pygame --user”
+ทำการติดตั้ง nltk โดยพิมพ์ “pip install --user -U nltk”
+เปิดหน้าใหม่ vs code แล้ว รัน “import nltk , nltk.download(),nltk.downloader()”แล้วจะมีหน้าต่าง downloader ขึ้น มา ให้ทำการ ดาวโหลด verbnet และ wordnet หรือ จะทำการ download all ก็ได้(หากเกมรันไม่ได้เพราะ nltk แนะนำให้ download all และการdownload all ช่วย เพิ่ม word list ในเกมทำให้มีจำนวนคำศัพท์เยอะขึ้น)
+
+เพิ่มเติม: 
+https://www.nltk.org/install.html 
+https://www.pygame.org/wiki/GettingStarted
