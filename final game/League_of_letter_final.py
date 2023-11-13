@@ -289,7 +289,7 @@ def main_game():
         for x in range(numtable):
             for y in range(numtable):
                 #pygame.draw.rect(screen, linecolor,((x * area) + 50, (y * area) + 50, area, area), 3)
-                text = pygame.font.Font(None, 50).render(table[x][y], True, (255, 0, 0))
+                text = pygame.font.Font('font.ttf', 40).render(table[x][y], True, (255, 0, 0))
                 screen.blit(text, ((x * area + area // 3) + 45,( y * area + area // 3) + 45))
         if newtable != table:
             '''for i in table:
@@ -300,7 +300,7 @@ def main_game():
         # word table
         for y in range(numtable):
             #pygame.draw.rect(screen, linecolor, (numtable *area + 225, y * area+50, area, area), 1)
-            text = pygame.font.Font(None, 50).render(word_table[y], True, (255, 0, 0))
+            text = pygame.font.Font('font.ttf', 30).render(word_table[y], True, (255, 0, 0))
             screen.blit(text, (numtable * area + 250, (y * area) + 80))
         if list(word_table) != new_word:
             for i in table:
@@ -310,13 +310,13 @@ def main_game():
         
         # show score
         
-        text = pygame.font.Font(None, 100).render(str(total_score), True, (0, 255, 0))
+        text = pygame.font.Font('font.ttf', 70).render(str(total_score), True, (0, 255, 0))
         screen.blit(text, (1720,750))
 
 
         # summit time
         #pygame.draw.circle(screen, (255,0,0), (1700,950), (5))
-        text = pygame.font.Font(None, 100).render(str(summit_time), True, (0, 255, 0))
+        text = pygame.font.Font('font.ttf', 70).render(str(summit_time), True, (0, 255, 0))
         screen.blit(text, (1720,920))
         pygame.display.update()
 
